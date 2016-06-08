@@ -1,6 +1,7 @@
 'use strict';
 
 const Hapi = require('hapi');
+const constants = require('./constants');
 require('dotenv').config({silent: true});
 
 const server = new Hapi.Server();
@@ -19,7 +20,19 @@ server.route({
   method: 'POST',
   path:'/hal',
   handler: function (request, reply) {
-    return reply({"ping":"pong"});
+    return reply({
+      'version': '1.0',
+      'response': {
+        'outputSpeech': {
+          'type': 'PlainText',
+          'text': 'Request sucessfully received'
+        },
+        'card': {
+          'type': 'Simple'
+        },
+        'shouldEndSession': true
+      }
+    });
   }
 });
 server.start((err) => {
