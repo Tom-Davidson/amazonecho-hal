@@ -1,0 +1,19 @@
+{
+  "name": "amazonecho-hal",
+  "version": "0.0.1",
+  "description": "An experiment with Amazon Echo/Alexa",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tom-Davidson/amazonecho-hal.git"
+  },
+  "author": "Tom Davidson <tom@davidson.me.uk>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Tom-Davidson/amazonecho-hal/issues"
+  },
+  "homepage": "https://github.com/Tom-Davidson/amazonecho-hal#readme"
+}
