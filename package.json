@@ -4,7 +4,8 @@
   "description": "An experiment with Amazon Echo/Alexa",
   "main": "index.js",
   "scripts": {
-    "test": "exit"
+    "test": "tape test/test.js",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/Tom-Davidson/amazonecho-hal/issues"
   },
-  "homepage": "https://github.com/Tom-Davidson/amazonecho-hal#readme"
+  "homepage": "https://github.com/Tom-Davidson/amazonecho-hal#readme",
+  "dependencies": {
+    "dotenv": "^2.0.0",
+    "hapi": "^13.4.1"
+  },
+  "devDependencies": {
+    "tape": "^4.5.1"
+  }
 }
