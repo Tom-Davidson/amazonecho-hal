@@ -15,6 +15,13 @@ server.route({
     return reply({"ping":"pong"});
   }
 });
+server.route({
+  method: 'POST',
+  path:'/hal',
+  handler: function (request, reply) {
+    return reply({"ping":"pong"});
+  }
+});
 server.start((err) => {
   if (err) {
     throw err;
