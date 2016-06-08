@@ -12,7 +12,7 @@ server.route({
   method: 'GET',
   path:'/ping',
   handler: function (request, reply) {
-    return reply('{"ping":"pong"}');
+    return reply({"ping":"pong"});
   }
 });
 server.start((err) => {
