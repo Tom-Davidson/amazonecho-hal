@@ -4,7 +4,7 @@
   "description": "An experiment with Amazon Echo/Alexa",
   "main": "index.js",
   "scripts": {
-    "test": "tape 'test/**/*.js'",
+    "test": "tape 'test/**/*.js' | tap-spec",
     "start": "node index.js"
   },
   "repository": {
@@ -22,6 +22,7 @@
     "hapi": "^13.4.1"
   },
   "devDependencies": {
+    "tap-spec": "^4.1.1",
     "tape": "^4.5.1"
   }
 }
