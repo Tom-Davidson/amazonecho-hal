@@ -24,26 +24,20 @@ server.route({
   handler: function (request, reply) {
     const req = alexaRequest.extract(request.payload);
     let message = 'Unable to parse request';
-    if(
-      req
-      && typeof req.request !== "undefined"
-      && typeof req.request.type !== "undefined"
-    ){
-      switch(req.request.type){
-        case 'IntentRequest':
-            switch(req.request.intent.name){
-              case 'OpenAirlock':
-                  message = 'I\'m sorry, Dave. I\'m afraid I can\'t do that.';
-                break;
-              default:
-                  message = 'Unrecognised IntentRequest received';
-                break;
-            }
-          break;
-        default:
-            message = 'Unknown request type';
-          break;
-      }
+    switch(alexaRequest.getType(req)){
+      case 'IntentRequest':
+          switch(alexaRequest.getIntent(req)){
+            case 'OpenAirlock':
+                message = 'I\'m sorry, Dave. I\'m afraid I can\'t do that.';
+              break;
+            default:
+                message = 'Unrecognised IntentRequest received';
+              break;
+          }
+        break;
+      default:
+          message = 'Unknown request type';
+        break;
     }
     let response = alexaResponse.blank();
     response = alexaResponse.setMessage(response, 'PlainText', message);
