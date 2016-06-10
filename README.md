@@ -7,3 +7,4 @@ An experiment with Amazon Echo/Alexa.
 ## Reference
 
  - [Alexa Skills API Reference](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference)
+ - [Echoism - A virtual Echo on the Web](https://echosim.io/)
