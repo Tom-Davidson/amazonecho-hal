@@ -36,7 +36,30 @@ test("POST to /hal get's a JSON payload that conforms to the API spec", function
   server.inject(
     {
       method: "POST",
-      url: "/hal"
+      url: "/hal",
+      payload: '{\
+      "session": {\
+        "sessionId": "SessionId.b968656c-9ee5-4b07-a0c8-784a71c00f2b",\
+        "application": {\
+          "applicationId": "amzn1.echo-sdk-ams.app.2ccafc7d-1e72-48de-9efa-5ceadb053843"\
+        },\
+        "user": {\
+          "userId": "amzn1.ask.account.AFP3ZWPOS2BGJR7OWJZ3DHPKMOMNWY4AY66FUR7ILBWANIHQN73QGXTKMDLFYFLYLVXFP7NBOOFZI435VLP3OWNWRPR47JBM65G3KVWPVNZTFF33TPW25OUF3NY2IM3KTWQFG7FEVWWYEPZZZMTXC574SJLB4NE5B5DOG56DOQI5QEADSGRMZQUE3T6FRZP4RDD73FX5V72YXXI"\
+        },\
+        "new": true\
+      },\
+      "request": {\
+        "type": "IntentRequest",\
+        "requestId": "EdwRequestId.acabcaaf-739b-4e97-9a0e-e511c3274aac",\
+        "timestamp": "2016-06-08T12:55:20Z",\
+        "intent": {\
+          "name": "OpenAirlock",\
+          "slots": {}\
+        },\
+        "locale": "en-US"\
+      },\
+      "version": "1.0"\
+      }'
     },
     function(response) {
       t.equal(response.statusCode, 200);

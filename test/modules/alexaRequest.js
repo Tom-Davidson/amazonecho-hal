@@ -44,6 +44,14 @@ test('alexaRequest.extract() with invalid JSON', function(t) {
   t.equal(request.request.intent.name, 'Unknown');
   t.end();
 });
+test('alexaRequest.extract() with valid data plus test harness hackery', function(t) {
+  const request = alexaRequest.extract(JSON.parse(exampleRawRequest));
+  t.equal(typeof(request), 'object');
+  t.equal(typeof(request.request), 'object');
+  t.equal(request.request.type, 'IntentRequest');
+  t.equal(request.request.intent.name, 'OpenAirlock');
+  t.end();
+});
 test('alexaRequest.getType()', function(t) {
   const request = alexaRequest.extract(exampleRawRequest);
   t.equal(alexaRequest.getType(request), 'IntentRequest');
