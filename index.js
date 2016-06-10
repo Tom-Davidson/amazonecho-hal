@@ -5,8 +5,6 @@ const constants = require('./lib/constants');
 const alexaResponse = require('./lib/alexaResponse');
 require('dotenv').config({silent: true});
 
-console.log(process.env.PORT);
-
 const server = new Hapi.Server();
 server.connection({
   host: '0.0.0.0',
