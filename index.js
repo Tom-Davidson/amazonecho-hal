@@ -45,7 +45,7 @@ server.route({
       }
     }
     let response = alexaResponse.blank();
-    response.response.outputSpeech.text = message;
+    response = alexaResponse.setMessage(response, 'PlainText', message);
     return reply(response);
   }
 });

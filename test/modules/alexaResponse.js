@@ -14,3 +14,24 @@ test('alexaResponse.blank()', function(t) {
   t.equal(typeof(response.response.shouldEndSession), 'boolean');
   t.end();
 });
+test('alexaResponse.setMessage() default', function(t) {
+  let response = alexaResponse.blank();
+  response = alexaResponse.setMessage(response, 'asdasfadfasdf', 'test message');
+  t.equal(response.response.outputSpeech.type, 'PlainText');
+  t.equal(response.response.outputSpeech.text, 'test message');
+  t.end();
+});
+test('alexaResponse.setMessage() PlainText', function(t) {
+  let response = alexaResponse.blank();
+  response = alexaResponse.setMessage(response, 'PlainText', 'test message');
+  t.equal(response.response.outputSpeech.type, 'PlainText');
+  t.equal(response.response.outputSpeech.text, 'test message');
+  t.end();
+});
+test('alexaResponse.setMessage() SSML', function(t) {
+  let response = alexaResponse.blank();
+  response = alexaResponse.setMessage(response, 'SSML', 'test ssml message');
+  t.equal(response.response.outputSpeech.type, 'SSML');
+  t.equal(response.response.outputSpeech.ssml, 'test ssml message');
+  t.end();
+});
