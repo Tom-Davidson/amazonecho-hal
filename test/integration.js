@@ -11,8 +11,8 @@ test("Basic HTTP Tests - GET /", function(t) { // t
       url: "/"
     },
     function(response) {
-      t.equal(response.statusCode, 404);
-      t.equal(response.payload, '{"statusCode":404,"error":"Not Found"}');
+      t.equal(response.statusCode, 404, 'status code is 404');
+      t.equal(response.payload, '{"statusCode":404,"error":"Not Found"}', 'response body is json error');
       server.stop(t.end);
     }
   );
@@ -24,10 +24,10 @@ test("Basic HTTP Tests - GET /ping", function(t) { // t
       url: "/ping"
     },
     function(response) {
-      t.equal(response.statusCode, 200);
-      t.equal(response.headers['content-type'], 'application/json; charset=utf-8');
-      t.equal(response.payload, '{"ping":"pong"}');
-      t.equal(response.payload.length, 15);
+      t.equal(response.statusCode, 200, 'status code is 200');
+      t.equal(response.headers['content-type'], 'application/json; charset=utf-8', 'content-type is json');
+      t.equal(response.payload, '{"ping":"pong"}', 'html body is json');
+      t.equal(response.payload.length, 15, 'html body length is 15');
       server.stop(t.end);
     }
   );
@@ -62,8 +62,8 @@ test("POST to /hal get's a JSON payload that conforms to the API spec", function
       }'
     },
     function(response) {
-      t.equal(response.statusCode, 200);
-      t.equal(response.headers['content-type'], 'application/json; charset=utf-8');
+      t.equal(response.statusCode, 200, 'status code is 200');
+      t.equal(response.headers['content-type'], 'application/json; charset=utf-8', 'content-type is json');
       if(response.payload.length > (24 * 1024)){
         t.fail('api response exceeds 24kb');
       }else{
@@ -71,23 +71,23 @@ test("POST to /hal get's a JSON payload that conforms to the API spec", function
       }
       const apiResponse = JSON.parse(response.payload);
       // Valid response?
-      t.equal(apiResponse.version, '1.0');
-      t.equal(typeof(apiResponse.response), 'object');
+      t.equal(apiResponse.version, '1.0', 'API version 1.0');
+      t.equal(typeof(apiResponse.response), 'object', 'has a reponse node');
       // root.response valid?
-      t.equal(typeof(apiResponse.response.shouldEndSession), 'boolean');
+      t.equal(typeof(apiResponse.response.shouldEndSession), 'boolean', 'response.shouldEndSession is a boolean');
       // root.response.outputSpeech valid?
       if(apiResponse.response.hasOwnProperty('outputSpeech')){
-        t.equal(typeof(apiResponse.response.outputSpeech), 'object');
-        t.equal(typeof(apiResponse.response.outputSpeech.type), 'string');
+        t.equal(typeof(apiResponse.response.outputSpeech), 'object', 'response.outputSpeech is an object');
+        t.equal(typeof(apiResponse.response.outputSpeech.type), 'string', 'response.outputSpeech is a string');
         switch(apiResponse.response.outputSpeech.type){
           case 'PlainText':
-            t.equal(typeof(apiResponse.response.outputSpeech.text), 'string');
+            t.equal(typeof(apiResponse.response.outputSpeech.text), 'string', 'response.outputSpeech.text is a string');
             if(apiResponse.response.outputSpeech.text.length > 8000){
               t.fail('apiResponse.response.outputSpeech.text exceeds 8000 characters');
             }
             break;
           case 'SSML':
-            t.equal(typeof(apiResponse.response.outputSpeech.ssml), 'string');
+            t.equal(typeof(apiResponse.response.outputSpeech.ssml), 'string', 'response.outputSpeech.ssml is a string');
             if(apiResponse.response.outputSpeech.ssml.length > 8000){
               t.fail('apiResponse.response.outputSpeech.ssml exceeds 8000 characters');
             }
@@ -106,10 +106,10 @@ test("POST to /hal get's a JSON payload that conforms to the API spec", function
           case 'Simple':
           case 'Standard':
           case 'LinkAccount':
-              t.pass();
+              t.pass('response.card.type is one of: Simple, Standard or LinkAccount');
             break;
           default:
-              t.fail('response.card.type must be on of: Simple, Standard or LinkAccount');
+              t.fail('response.card.type must be one of: Simple, Standard or LinkAccount');
             break;
         }
         if(
