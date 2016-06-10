@@ -1,7 +1,8 @@
+'use strict';
+
 const test   = require('tape');
 const server = require("../index");
 const constants = require('../lib/constants');
-
 
 test("Basic HTTP Tests - GET /", function(t) { // t
   server.inject(

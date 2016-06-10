@@ -4,7 +4,7 @@
   "description": "An experiment with Amazon Echo/Alexa",
   "main": "index.js",
   "scripts": {
-    "test": "tape test/test.js",
+    "test": "tape 'test/**/*.js'",
     "start": "node index.js"
   },
   "repository": {

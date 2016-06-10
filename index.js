@@ -2,6 +2,7 @@
 
 const Hapi = require('hapi');
 const constants = require('./lib/constants');
+const alexaResponse = require('./lib/alexaResponse');
 require('dotenv').config({silent: true});
 
 console.log(process.env.PORT);
@@ -45,19 +46,9 @@ server.route({
           break;
       }
     }
-    return reply({
-      'version': '1.0',
-      'response': {
-        'outputSpeech': {
-          'type': 'PlainText',
-          'text': message
-        },
-        'card': {
-          'type': 'Simple'
-        },
-        'shouldEndSession': true
-      }
-    });
+    let response = alexaResponse.blank();
+    response.response.outputSpeech.text = message;
+    return reply(response);
   }
 });
 server.start((err) => {
