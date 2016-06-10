@@ -1,7 +1,7 @@
 'use strict';
 
 const Hapi = require('hapi');
-const constants = require('./constants');
+const constants = require('./lib/constants');
 require('dotenv').config({silent: true});
 
 console.log(process.env.PORT);
