@@ -30,35 +30,35 @@ const exampleRawRequest = '{\
 
 test('alexaRequest.extract()', function(t) {
   const request = alexaRequest.extract(exampleRawRequest);
-  t.equal(typeof(request), 'object');
-  t.equal(typeof(request.request), 'object');
-  t.equal(request.request.type, 'IntentRequest');
-  t.equal(request.request.intent.name, 'OpenAirlock');
+  t.equal(typeof(request), 'object', 'returns an object');
+  t.equal(typeof(request.request), 'object', 'request is an object');
+  t.equal(request.request.type, 'IntentRequest', 'request.type is correct');
+  t.equal(request.request.intent.name, 'OpenAirlock', 'request.intent.name is correct');
   t.end();
 });
 test('alexaRequest.extract() with invalid JSON', function(t) {
   const request = alexaRequest.extract('sadsjkfssfdhasgaegasfasef');
-  t.equal(typeof(request), 'object');
-  t.equal(typeof(request.request), 'object');
-  t.equal(request.request.type, 'IntentRequest');
-  t.equal(request.request.intent.name, 'Unknown');
+  t.equal(typeof(request), 'object', 'returns an object');
+  t.equal(typeof(request.request), 'object', 'request is an object');
+  t.equal(request.request.type, 'IntentRequest', 'request.type is correct');
+  t.equal(request.request.intent.name, 'Unknown', 'request.intent.name is correct');
   t.end();
 });
 test('alexaRequest.extract() with valid data plus test harness hackery', function(t) {
   const request = alexaRequest.extract(JSON.parse(exampleRawRequest));
-  t.equal(typeof(request), 'object');
-  t.equal(typeof(request.request), 'object');
-  t.equal(request.request.type, 'IntentRequest');
-  t.equal(request.request.intent.name, 'OpenAirlock');
+  t.equal(typeof(request), 'object', 'returns an object');
+  t.equal(typeof(request.request), 'object', 'request is an object');
+  t.equal(request.request.type, 'IntentRequest', 'request.type is correct');
+  t.equal(request.request.intent.name, 'OpenAirlock', 'request.intent.name is correct');
   t.end();
 });
 test('alexaRequest.getType()', function(t) {
   const request = alexaRequest.extract(exampleRawRequest);
-  t.equal(alexaRequest.getType(request), 'IntentRequest');
+  t.equal(alexaRequest.getType(request), 'IntentRequest', 'request type is correct');
   t.end();
 });
 test('alexaRequest.getIntent()', function(t) {
   const request = alexaRequest.extract(exampleRawRequest);
-  t.equal(alexaRequest.getIntent(request), 'OpenAirlock');
+  t.equal(alexaRequest.getIntent(request), 'OpenAirlock', 'intent is correct');
   t.end();
 });
