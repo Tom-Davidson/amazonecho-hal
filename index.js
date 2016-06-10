@@ -2,6 +2,7 @@
 
 const Hapi = require('hapi');
 const constants = require('./lib/constants');
+const alexaRequest = require('./lib/alexaRequest');
 const alexaResponse = require('./lib/alexaResponse');
 require('dotenv').config({silent: true});
 
@@ -21,16 +22,16 @@ server.route({
   method: 'POST',
   path: '/hal',
   handler: function (request, reply) {
-    const alexaRequest = JSON.parse(request.payload);
+    const req = alexaRequest.extract(request.payload);
     let message = 'Unable to parse request';
     if(
-      alexaRequest
-      && typeof alexaRequest.request !== "undefined"
-      && typeof alexaRequest.request.type !== "undefined"
+      req
+      && typeof req.request !== "undefined"
+      && typeof req.request.type !== "undefined"
     ){
-      switch(alexaRequest.request.type){
+      switch(req.request.type){
         case 'IntentRequest':
-            switch(alexaRequest.request.intent.name){
+            switch(req.request.intent.name){
               case 'OpenAirlock':
                   message = 'I\'m sorry, Dave. I\'m afraid I can\'t do that.';
                 break;
